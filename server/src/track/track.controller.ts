@@ -4,7 +4,10 @@ import { Controller, Get } from '@nestjs/common';
 export class TrackController {
   create() {}
 
-  getAll() {}
+  @Get()
+  getAll() {
+    return 'WORK';
+  }
 
   getOne() {}
   delete() {}
