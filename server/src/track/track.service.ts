@@ -26,8 +26,13 @@ export class TrackService {
     return track;
   }
 
-  async getAll(): Promise<Track[]> {
-    const tracks = await this.trackModel.find();
+  //   async getAll(): Promise<Track[]> {
+  //     const tracks = await this.trackModel.find();
+  //     return tracks;
+  //   }
+
+  async getAll(count = 10, offset = 0): Promise<Track[]> {
+    const tracks = await this.trackModel.find().skip(offset).limit(count);
     return tracks;
   }
 
@@ -53,5 +58,11 @@ export class TrackService {
     track.comments.push(comment.id);
     await track.save();
     return comment;
+  }
+
+  async listen(id: ObjectId) {
+    const track = await this.trackModel.findById(id);
+    track.listens += 1;
+    track.save();
   }
 }
