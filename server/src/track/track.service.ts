@@ -12,7 +12,7 @@ export class TrackService {
     @InjectModel(Track.name) private trackModel: Model<Track>,
     @InjectModel(Comment.name) private commentModel: Model<Comment>,
   ) {}
-  async create(dto: CreateTrackDto): Promise<Track> {
+  async create(dto: CreateTrackDto, picture, audio): Promise<Track> {
     const track = await this.trackModel.create({ ...dto, listens: 0 });
     return track;
   }
