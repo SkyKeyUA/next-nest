@@ -9,9 +9,13 @@ import Box from '@mui/material/Box';
 import { useRouter } from 'next/router';
 import { ITrack } from '@/types/track';
 import { TrackList } from '@/components/Track/TrackList';
+import { useAppDispatch } from '@/hooks/redux';
+import { usePlayerSelector } from '@/redux/reducers/player/selectors';
 
 const Index = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const {} = usePlayerSelector();
   const tracks: ITrack[] = [
     {
       _id: '1',

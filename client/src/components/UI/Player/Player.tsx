@@ -7,6 +7,9 @@ import styles from './Player.module.scss';
 import { ITrack } from '@/types/track';
 import { TrackProgress } from '@/components/Track/TrackProgress';
 import VolumeUp from '@mui/icons-material/VolumeUp';
+import { usePlayerSelector } from '@/redux/reducers/player/selectors';
+import { useAppDispatch } from '@/hooks/redux';
+import { pauseTrack, playTrack } from '@/redux/reducers/player/reducer';
 
 export const Player = () => {
   const track: ITrack = {
@@ -19,12 +22,18 @@ export const Player = () => {
     audio: '123',
     comments: [],
   };
-  const active = false;
+  const dispatch = useAppDispatch();
+  const { pause, volume, active, currentTime, duration } = usePlayerSelector();
+  const onClickTrack = () => {
+    if (pause) {
+      dispatch(playTrack());
+    } else {
+      dispatch(pauseTrack());
+    }
+  };
   return (
     <div className={styles.root}>
-      <IconButton onClick={(e) => e.stopPropagation()}>
-        {active ? <Pause /> : <PlayArrow />}
-      </IconButton>
+      <IconButton onClick={onClickTrack}>{!pause ? <Pause /> : <PlayArrow />}</IconButton>
       <Grid container direction="column" style={{ width: 200, margin: '0 20px' }}>
         <div>{track.name}</div>
         <div style={{ fontSize: 12, color: 'gray' }}>{track.artist}</div>
