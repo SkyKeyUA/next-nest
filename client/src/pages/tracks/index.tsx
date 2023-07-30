@@ -24,7 +24,7 @@ const Index = () => {
       text: '123',
       listens: 3,
       picture: '/next.svg',
-      audio: '123',
+      audio: 'http://localhost:5000/audio/8c0daf8e-28e8-4a02-af30-dacb4848517d.wav',
       comments: [],
     },
     {
@@ -34,7 +34,7 @@ const Index = () => {
       text: '2',
       listens: 3,
       picture: '/next.svg',
-      audio: '2',
+      audio: 'http://localhost:5000/audio/8c0daf8e-28e8-4a02-af30-dacb4848517d.wav',
       comments: [],
     },
     {
@@ -44,7 +44,7 @@ const Index = () => {
       text: '3',
       listens: 3,
       picture: '/next.svg',
-      audio: '3',
+      audio: 'http://localhost:5000/audio/8c0daf8e-28e8-4a02-af30-dacb4848517d.wav',
       comments: [],
     },
   ];

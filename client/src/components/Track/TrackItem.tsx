@@ -8,6 +8,8 @@ import { Grid, IconButton } from '@mui/material';
 import { Pause, PlayArrow, Delete } from '@mui/icons-material';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useAppDispatch } from '@/hooks/redux';
+import { playTrack, setActive } from '@/redux/reducers/player/reducer';
 
 interface TrackItemProps {
   track: ITrack;
@@ -16,11 +18,15 @@ interface TrackItemProps {
 
 export const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const play = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    dispatch(setActive(track));
+    dispatch(playTrack());
+  };
   return (
     <Card className={styles.root} onClick={() => router.push(`/tracks/${track._id}`)}>
-      <IconButton onClick={(e) => e.stopPropagation()}>
-        {active ? <Pause /> : <PlayArrow />}
-      </IconButton>
+      <IconButton onClick={play}>{active ? <Pause /> : <PlayArrow />}</IconButton>
       <Image src={track.picture} width={70} height={70} alt="picture" />
       <Grid container direction="column" style={{ width: 200, margin: '0 20px' }}>
         <div>{track.name}</div>
