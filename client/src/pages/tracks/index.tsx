@@ -11,6 +11,7 @@ import { ITrack } from '@/types/track';
 import { TrackList } from '@/components/Track/TrackList';
 import { useAppDispatch } from '@/hooks/redux';
 import { usePlayerSelector } from '@/redux/reducers/player/selectors';
+import { fetchTracks } from '@/redux/reducers/track/asyncActions';
 
 const Index = () => {
   const router = useRouter();
@@ -48,6 +49,10 @@ const Index = () => {
       comments: [],
     },
   ];
+  React.useEffect(() => {
+    dispatch(fetchTracks);
+  }, []);
+  console.log(process.env.REACT_APP_API_URL);
   return (
     <MainLayout>
       <Grid container justifyContent="center">
