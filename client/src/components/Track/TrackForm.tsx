@@ -6,22 +6,32 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { FileUpload } from '../FileUpload';
 import Button from '@mui/material/Button';
+import { useInput } from '@/hooks/useInput';
 
 interface TrackFromProps {
   activeStep: number;
+  setPicture: (file: File | null) => void;
+  setAudio: (file: File | null) => void;
+  name: ReturnType<typeof useInput>;
+  artist: ReturnType<typeof useInput>;
+  text: ReturnType<typeof useInput>;
 }
 
-export const TrackForm: React.FC<TrackFromProps> = ({ activeStep }) => {
-  const [picture, setPicture] = React.useState(null);
-  const [audio, setAudio] = React.useState(null);
-
+export const TrackForm: React.FC<TrackFromProps> = ({
+  activeStep,
+  setPicture,
+  setAudio,
+  name,
+  artist,
+  text,
+}) => {
   return (
     <StepWrapper activeStep={activeStep}>
       {activeStep === 0 && (
         <Grid container direction={'column'} style={{ padding: 20 }}>
-          <TextField style={{ marginTop: 10 }} label={'Track name'} />
-          <TextField style={{ marginTop: 10 }} label={'Avtor name'} />
-          <TextField style={{ marginTop: 10 }} label={'Text song'} multiline rows={3} />
+          <TextField {...name} style={{ marginTop: 10 }} label={'Track name'} />
+          <TextField {...artist} style={{ marginTop: 10 }} label={'Avtor name'} />
+          <TextField {...text} style={{ marginTop: 10 }} label={'Text song'} multiline rows={3} />
         </Grid>
       )}
       {activeStep === 1 && (
@@ -34,7 +44,6 @@ export const TrackForm: React.FC<TrackFromProps> = ({ activeStep }) => {
           <Button>Upload Audio</Button>
         </FileUpload>
       )}
-      {activeStep === 3 && <h1>Done</h1>}
     </StepWrapper>
   );
 };

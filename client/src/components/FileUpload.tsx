@@ -12,7 +12,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ setFile, accept, childre
   const ref = React.useRef<HTMLInputElement>(null);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files?.[0]);
+    setFile(e.target.files?.[0]);
   };
   return (
     <div onClick={() => ref.current?.click()}>
