@@ -1,7 +1,7 @@
 /** @format */
 
-import { createSlice } from '@reduxjs/toolkit';
-import { Status, TrackSliceState } from './type';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Status, TrackSliceState, Tracks } from './type';
 import { fetchTracks } from './asyncActions';
 
 const initialState: TrackSliceState = {
@@ -12,7 +12,11 @@ const initialState: TrackSliceState = {
 const tracksReducer = createSlice({
   name: 'tracks',
   initialState,
-  reducers: {},
+  reducers: {
+    setTracks(state, action: PayloadAction<Tracks>) {
+      state.tracks = action.payload.tracks;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchTracks.pending, (state) => {
       state.tracks = [];
