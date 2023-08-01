@@ -15,11 +15,14 @@ import { useTrackSelector } from '@/redux/reducers/track/selectors';
 const Index = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { tracks } = useTrackSelector();
+  const { tracks, statusTracks } = useTrackSelector();
   React.useEffect(() => {
-    dispatch(fetchTracks);
+    dispatch(fetchTracks());
   }, []);
-  console.log(process.env.REACT_APP_API_URL);
+
+  if (statusTracks === 'loading') {
+    return <div>Loading...</div>;
+  }
   return (
     <MainLayout>
       <Grid container justifyContent="center">

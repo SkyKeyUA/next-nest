@@ -27,7 +27,12 @@ export const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) =
   return (
     <Card className={styles.root} onClick={() => router.push(`/tracks/${track._id}`)}>
       <IconButton onClick={play}>{active ? <Pause /> : <PlayArrow />}</IconButton>
-      <Image src={track.picture} width={70} height={70} alt="picture" />
+      <img
+        src={`${process.env.REACT_APP_API_URL}/${track.picture}`}
+        width={70}
+        height={70}
+        alt="picture"
+      />
       <Grid container direction="column" style={{ width: 200, margin: '0 20px' }}>
         <div>{track.name}</div>
         <div style={{ fontSize: 12, color: 'gray' }}>{track.artist}</div>

@@ -8,9 +8,6 @@ export enum Status {
   ERROR = 'error',
 }
 
-export interface Tracks {
-  tracks: ITrack[];
-}
 export interface TrackSliceState {
   tracks: ITrack[];
   statusTracks: Status;
