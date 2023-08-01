@@ -35,7 +35,7 @@ export const Player = () => {
   const setAudio = () => {
     if (active && audioRef.current) {
       const audio = audioRef.current;
-      audio.src = active.audio;
+      audio.src = `${process.env.REACT_APP_API_URL}/${active.audio}`;
       audio.volume = volume / 100;
       audio.onloadedmetadata = () => {
         dispatch(setDuration(Math.ceil(audio.duration)));
